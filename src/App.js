@@ -41,7 +41,7 @@ handleAddTodoBtn = ()=>{
 }
   render() {
     return (
-      <div className="App" style={{backgroundColor:"lightGray",height:"100vh"}}>
+      <div className="App" style={{backgroundColor:"Gray",height:"100vh",color:"white"}}>
         <h1>TODO APP</h1>
         <h5>Using React-Redux</h5>
         {
