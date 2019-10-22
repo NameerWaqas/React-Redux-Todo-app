@@ -17,7 +17,8 @@ class App extends React.Component {
   constructor(){
     super();
     this.state={
-      todoText:""
+      todoText:"",
+      inputDefVal:""
     }
   }
 handleInput = (param)=>{
@@ -25,27 +26,42 @@ handleInput = (param)=>{
     todoText:param.target.value
   })
 }
+handleAddTodoBtn = ()=>{
+  if(this.state.todoText=="")
+  {
+    return;
+  }
+  else{
+    this.props.addTodo(this.state.todoText);
+    // this.setState({
+    // inputDefVal:""
+    // })    
+   
+  }
+}
   render() {
     return (
-      <div className="App">
+      <div className="App" style={{backgroundColor:"lightGray",height:"100vh"}}>
         <h1>TODO APP</h1>
         <h5>Using React-Redux</h5>
         {
           this.props.mainState.todos.map(
             (param,id) => {
               return <div 
-              style={{ textAlign: "left", margin: "1%",display:"flex",border:"1px solid orange",height:"30px",borderRadius:"10px"}}
+              style={{ textAlign: "left", margin: "1%",display:"flex",border:"1px solid orange",height:"40px",borderRadius:"10px",
+            }}
               >
                 <div style={{flex:"9",margin:"auto",arginLeft:"2%" }}>{param}</div>                
-                <div style={{ flex:"1"}}>
-                  <button style={{ height:"30px",width:"inherit"}} onClick={()=>this.props.delTodo(id)}>DELETE</button>
+                <div style={{ flex:"1",height:"inherit"}}>
+                  <button style={{ height:"30px",width:"100%",height:"inherit",borderRadius:"10px",backgroundColor:"yellow"
+                }} onClick={()=>this.props.delTodo(id)}>DELETE</button>
                 </div>
               </div>
             }
           )
         }
-        <div><input type="text" onChange={this.handleInput}/></div>
-        <div><button onClick={()=>this.props.addTodo(this.state.todoText)}>ADD Todo</button></div>
+        <div><input type="text" onChange={this.handleInput} defaultValue={this.state.inputDefVal}/></div>
+        <div><button onClick={()=>this.handleAddTodoBtn()}>ADD Todo</button></div>
       </div>
     );
   }

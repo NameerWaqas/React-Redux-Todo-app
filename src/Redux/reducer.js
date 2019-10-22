@@ -11,7 +11,7 @@ export const Reducer = (
         case actionTypes.DELETE:
             console.log(action.payload);
             const delTodo = state.todos.filter((val,ind)=> (ind!=action.payload)?val:null);            
-            return { ...state, todos : delTodo};
+            return { ...state,   todos : delTodo};
 
         case actionTypes.UPDATE:
             let updTodo = state.todos.splice(action.payload.id, 0, action.payload.todo);
